@@ -2,5 +2,6 @@ Starting from a dirty dataset containing superstore sales taken from https://www
 
 Performing the following tasks:
 
--Cleaning and transforming the data using SQL (BigQuery) so that dataset is usable. All SQL queries are merged into .txt file. 
+-Cleaning and transforming the data using SQL (BigQuery) so that dataset is usable. All SQL queries and their purposes are in the .txt file. 
+
 -Importing the clean dataset to Tableau Public, and creating dashboards that offer insight.
