@@ -1,0 +1,59 @@
+--Firstly, checking for null values. We initially omit column "Discount" from this search because not every order has a discount.
+
+SELECT *
+from portfolioproject-447322.superstore.superstore_data
+WHERE `Ship Mode` IS NULL
+  OR Segment IS NULL
+  OR Country IS NULL
+  OR City IS NULL
+  OR State IS NULL
+  OR `Postal Code` IS NULL
+  OR Region IS NULL
+  OR Category IS NULL
+  OR `Sub-Category` IS NULL
+  OR Sales IS NULL
+  OR Quantity IS NULL
+  OR Profit IS NULL
+
+--Results show that there are no null values in non "Discount" columns.
+
+For null "Discount" columns, we replace null with 0 instead. 
+
+UPDATE `portfolioproject-447322.superstore.superstore_data`
+SET `Discount` = 0
+WHERE `Discount` IS NULL;
+
+/*
+I would love to check for duplicates to remove, however the dataset does not contain unique columns such as "ID". This means I cannot actually know for certain whether non-unique rows are true duplicates. Either way, I will still provide a query that returns non-unique rows, just for good practice.
+*/
+
+--Results show that 17 rows are not unique and they each have exactly one repetition.
+
+SELECT *, COUNT(*) AS duplicate_count
+FROM portfolioproject-447322.superstore.superstore_data
+GROUP BY `Ship Mode`, Segment, Country, City, State, `Postal Code`, Region, Category, `Sub-Category`, Sales, Quantity, Discount, Profit
+HAVING COUNT(*) > 1;
+
+/* 
+Checking for distinct column names (to find misspellings), starting with "Ship Mode" all the way to "Profit". Sorting by ASC or DESC to also check for negative values in unusual places, or for lower case first letter (all columns should have capitalized first letter).  
+*/
+
+SELECT DISTINCT `Ship Mode`
+FROM portfolioproject-447322.superstore.superstore_data
+ORDER BY `Ship Mode` DESC;
+
+--Results show unexpected Ship Mode named "Class". Upon investigation, this is a typo for one particular row. Removing is the best solution.
+
+DELETE FROM `portfolioproject-447322.superstore.superstore_data`
+WHERE `Ship Mode` = 'Class'
+
+--No other columns have obvious issues in this regard.
+
+
+
+
+
+
+
+
+
