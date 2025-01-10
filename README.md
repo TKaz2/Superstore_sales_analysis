@@ -1,3 +1,5 @@
+The objective is to determine The Real Canadian Superstore's most profitable items. 
+
 Starting from a dirty dataset containing superstore sales taken from https://www.kaggle.com/datasets/sgup0402/uncleaned-sample-superstore.
 
 Performing the following tasks:
